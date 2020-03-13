@@ -17,10 +17,13 @@ extern volatile uint32_t systicks;
 class FanControl {
 public:
 	FanControl();
-	void speedPercent(int speed);
-	void speed(int speed);
-	void sleep(int);
+	void speedPercent(uint8_t speed);
 	bool setFrequency(uint16_t freq);
+	uint16_t getSpeed();
+	uint16_t tToSetpoint();
+	void updateFrequency();
+	void setTarget(uint16_t freq);
+	uint16_t getTarget();
 	virtual ~FanControl();
 
 private:
@@ -31,7 +34,9 @@ private:
 	ModbusRegister Current;
 	ModbusRegister Frequency; // reference 1
 	static const int MAX_SPEED = 20000;
-
+	void sleep(int);
+	uint16_t ctr;
+	uint16_t targetSpeed;
 
 };
 

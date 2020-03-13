@@ -1,7 +1,23 @@
+core_cm3.h:1323:22:void NVIC_EnableIRQ(IRQn_Type)	16	static
+core_cm3.h:1375:22:void NVIC_ClearPendingIRQ(IRQn_Type)	16	static
 core_cm3.h:1405:22:void NVIC_SetPriority(IRQn_Type, uint32_t)	16	static
 core_cm3.h:1532:26:uint32_t SysTick_Config(uint32_t)	16	static
+sysctl_15xx.h:185:20:void Chip_SYSCTL_PeriphReset(CHIP_SYSCTL_PERIPH_RESET_T)	16	static
 swm_15xx.h:232:20:void Chip_SWM_MovablePortPinAssign(CHIP_SWM_PIN_MOVABLE_T, uint8_t, uint8_t)	16	static
-ModbusProject.cpp:58:6:void SysTick_Handler()	4	static
-ModbusProject.cpp:67:6:void sleep(int)	16	static
-ModbusProject.cpp:76:10:uint32_t millis()	4	static
-ModbusProject.cpp:84:5:int main()	376	static
+pinint_15xx.h:101:20:void Chip_PININT_SetPinModeEdge(LPC_PIN_INT_T*, uint32_t)	16	static
+pinint_15xx.h:136:20:void Chip_PININT_EnableIntHigh(LPC_PIN_INT_T*, uint32_t)	16	static
+pinint_15xx.h:245:20:void Chip_PININT_ClearIntStatus(LPC_PIN_INT_T*, uint32_t)	16	static
+ring_buffer.h:133:19:int RingBuffer_IsEmpty(RINGBUFF_T*)	16	static
+inmux_15xx.h:221:20:void Chip_INMUX_PinIntSel(uint8_t, uint8_t, uint8_t)	16	static
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+ModbusProject.cpp:89:6:void SysTick_Handler()	16	static
+ModbusProject.cpp:100:6:void PIN_INT0_IRQHandler()	16	static
+ModbusProject.cpp:114:6:void PIN_INT1_IRQHandler()	16	static
+ModbusProject.cpp:128:6:void PIN_INT2_IRQHandler()	16	static
+ModbusProject.cpp:142:6:void PIN_INT3_IRQHandler()	16	static
+ModbusProject.cpp:161:6:void sleep(int)	16	static
+ModbusProject.cpp:168:10:uint32_t millis()	4	static
+ModbusProject.cpp:176:5:int main()	1016	static
+ModbusProject.cpp:78:14:void __tcf_0(void*)	24	static
+ModbusProject.cpp:391:1:void __static_initialization_and_destruction_0(int, int)	24	static
+ModbusProject.cpp:391:1:cpp)	8	static

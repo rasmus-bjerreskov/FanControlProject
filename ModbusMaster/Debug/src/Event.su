@@ -1,0 +1,3 @@
+Event.cpp:10:1:Event::Event(Event::eventType)	16	static
+Event.cpp:14:1:Event::~Event()	16	static
+Event.cpp:14:1:virtual Event::~Event()	16	static

@@ -1,0 +1,5 @@
+I2C.h:18:2:I2C_config::I2C_config()	16	static
+SDP600.cpp:10:1:SDP600::SDP600()	16	static
+SDP600.cpp:15:9:uint8_t SDP600::getPressure()	40	static
+SDP600.cpp:23:1:SDP600::~SDP600()	16	static
+SDP600.cpp:23:1:virtual SDP600::~SDP600()	16	static

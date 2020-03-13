@@ -1,0 +1,4 @@
+Imutex.cpp:4:1:Imutex::Imutex()	16	static
+Imutex.cpp:6:1:Imutex::~Imutex()	16	static
+Imutex.cpp:9:6:void Imutex::lock()	24	static
+Imutex.cpp:13:6:void Imutex::unlock()	16	static
