@@ -1,0 +1,13 @@
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+morseencoder.cpp:50:1:morse_encoder::morse_encoder(DigitalIoPin&)	16	static
+morseencoder.cpp:56:1:morse_encoder::morse_encoder(DigitalIoPin&, DigitalIoPin&)	24	static
+morseencoder.cpp:63:6:void morse_encoder::set_period(int)	16	static
+morseencoder.cpp:68:6:void morse_encoder::set_wpm(int)	16	static
+morseencoder.cpp:73:5:int morse_encoder::get_wpm()	16	static
+morseencoder.cpp:77:5:int morse_encoder::get_period()	16	static
+morseencoder.cpp:81:6:void morse_encoder::send(const char*)	24	static
+morseencoder.cpp:88:6:void morse_encoder::send(std::__cxx11::string)	16	static
+morseencoder.cpp:93:6:void morse_encoder::morse_char(char)	24	static
+morseencoder.cpp:111:6:void morse_encoder::put_signal(int)	16	static
+morseencoder.cpp:120:1:morse_encoder::~morse_encoder()	16	static
+morseencoder.cpp:120:1:virtual morse_encoder::~morse_encoder()	16	static

@@ -1,0 +1,20 @@
+12:43:12 **** Incremental Build of configuration Debug for project ModbusMaster ****
+make -r -j4 all 
+Building target: ModbusMaster.axf
+Invoking: MCU C++ Linker
+arm-none-eabi-c++ -nostdlib -L"C:\Users\Rasmus\Documents\MCUXpressoIDE_11.1.0_3209\FanControlProject\lpc_board_nxp_lpcxpresso_1549\Debug" -L"C:\Users\Rasmus\Documents\MCUXpressoIDE_11.1.0_3209\FanControlProject\lpc_chip_15xx\Debug" -L"C:\Users\Rasmus\Documents\MCUXpressoIDE_11.1.0_3209\FanControlProject\my_lib\Debug" -Xlinker -Map="ModbusMaster.map" -Xlinker --cref -Xlinker --gc-sections -Xlinker -print-memory-usage -mcpu=cortex-m3 -mthumb -T "exercise6_2_Debug.ld" -o "ModbusMaster.axf"  ./src/FanControl.o ./src/I2C.o ./src/LpcUart.o ./src/ModbusMaster.o ./src/ModbusProject.o ./src/ModbusRegister.o ./src/SerialPort.o ./src/cr_cpp_config.o ./src/cr_startup_lpc15xx.o ./src/crp.o ./src/retarget_itm.o ./src/sysinit.o   -lmy_lib -llpc_board_nxp_lpcxpresso_1549 -llpc_chip_15xx
+Memory region         Used Size  Region Size  %age Used
+       MFlash256:       40792 B       256 KB     15.56%
+      Ram0_16_32:        2628 B        32 KB      8.02%
+          Ram2_4:          0 GB         4 KB      0.00%
+Finished building target: ModbusMaster.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "ModbusMaster.axf"; # arm-none-eabi-objcopy -v -O binary "ModbusMaster.axf" "ModbusMaster.bin" ; # checksum -p LPC1549 -d "ModbusMaster.bin";
+   text	   data	    bss	    dec	    hex	filename
+  38316	   2476	    152	  40944	   9ff0	ModbusMaster.axf
+ 
+
+12:43:13 Build Finished. 0 errors, 0 warnings. (took 582ms)
+

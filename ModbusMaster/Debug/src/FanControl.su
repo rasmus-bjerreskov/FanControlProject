@@ -1,0 +1,7 @@
+FanControl.cpp:12:1:FanControl::FanControl()	16	static
+FanControl.cpp:42:6:void FanControl::sleep(int)	24	static
+FanControl.cpp:47:6:void FanControl::speedPercent(int)	24	static
+FanControl.cpp:55:6:void FanControl::speed(int)	16	static
+FanControl.cpp:59:6:bool FanControl::setFrequency(uint16_t)	32	static
+FanControl.cpp:86:1:FanControl::~FanControl()	16	static
+FanControl.cpp:86:1:virtual FanControl::~FanControl()	16	static

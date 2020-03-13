@@ -1,0 +1,14 @@
+core_cm3.h:1323:22:void NVIC_EnableIRQ(IRQn_Type)	16	static
+core_cm3.h:1375:22:void NVIC_ClearPendingIRQ(IRQn_Type)	16	static
+sysctl_15xx.h:185:20:void Chip_SYSCTL_PeriphReset(CHIP_SYSCTL_PERIPH_RESET_T)	16	static
+pinint_15xx.h:79:20:void Chip_PININT_Init(LPC_PIN_INT_T*)	16	static
+pinint_15xx.h:101:20:void Chip_PININT_SetPinModeEdge(LPC_PIN_INT_T*, uint32_t)	16	static
+pinint_15xx.h:171:20:void Chip_PININT_EnableIntLow(LPC_PIN_INT_T*, uint32_t)	16	static
+pinint_15xx.h:245:20:void Chip_PININT_ClearIntStatus(LPC_PIN_INT_T*, uint32_t)	16	static
+inmux_15xx.h:221:20:void Chip_INMUX_PinIntSel(uint8_t, uint8_t, uint8_t)	16	static
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+atomic_base.h:80:3:constexpr std::memory_order std::operator&(std::memory_order, std::__memory_order_modifier)	16	static
+exercise5.3.cpp:76:6:void PIN_INT0_IRQHandler()	8	static
+exercise5.3.cpp:91:5:int main()	136	static
+atomic_base.h:299:7:std::__atomic_base<_IntTp>::__int_type std::__atomic_base<_IntTp>::operator++() volatile [with _ITp = int]	16	static
+atomic_base.h:261:7:std::__atomic_base<_IntTp>::operator std::__atomic_base<_IntTp>::__int_type() const volatile [with _ITp = int]	24	static

@@ -1,0 +1,2 @@
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+exercise3.3.cpp:28:5:int main()	568	static

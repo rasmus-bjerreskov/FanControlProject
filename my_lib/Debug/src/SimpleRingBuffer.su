@@ -1,0 +1,6 @@
+SimpleRingBuffer.cpp:10:1:SimpleRingBuffer::SimpleRingBuffer(int, int)	32	static
+SimpleRingBuffer.cpp:24:6:void SimpleRingBuffer::push(int)	16	static
+SimpleRingBuffer.cpp:32:6:int& SimpleRingBuffer::operator[](int) const	16	static
+SimpleRingBuffer.cpp:36:6:int* SimpleRingBuffer::end()	24	static
+SimpleRingBuffer.cpp:42:1:SimpleRingBuffer::~SimpleRingBuffer()	16	static
+SimpleRingBuffer.cpp:42:1:virtual SimpleRingBuffer::~SimpleRingBuffer()	16	static

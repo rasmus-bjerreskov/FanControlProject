@@ -1,0 +1,7 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ModbusMaster LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Exercise3.1 LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:exercise2.3 LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:exercise3.2 LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:exercise3.3 LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:exercise4.1 LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:exercise4.2 LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:exercise5.1 LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:exercise5.2 LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:exercise5.3 LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:exercise6.1 LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:exercise6.2 LinkServer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:exercise6.3 LinkServer Debug
+eclipse.preferences.version=1
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ModbusMaster\ LinkServer\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ModbusMaster\ LinkServer\ Debug/activeLaunchTarget=null\:---

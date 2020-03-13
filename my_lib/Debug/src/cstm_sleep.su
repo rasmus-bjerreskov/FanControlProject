@@ -1,0 +1,12 @@
+core_cm3.h:1405:22:void NVIC_SetPriority(IRQn_Type, uint32_t)	16	static
+core_cm3.h:1532:26:uint32_t SysTick_Config(uint32_t)	16	static
+clock_15xx.h:500:20:void Chip_Clock_SetSysTickClockDiv(uint32_t)	16	static
+atomic_base.h:80:3:constexpr std::memory_order std::operator&(std::memory_order, std::__memory_order_modifier)	16	static
+cstm_sleep.cpp:29:6:void SysTick_Handler()	8	static
+cstm_sleep.cpp:36:6:void sleep(int)	16	static
+cstm_sleep.cpp:44:13:void sleep_for(int)	24	static
+atomic_base.h:261:7:std::__atomic_base<_IntTp>::operator std::__atomic_base<_IntTp>::__int_type() const volatile [with _ITp = int]	24	static
+atomic_base.h:291:7:std::__atomic_base<_IntTp>::__int_type std::__atomic_base<_IntTp>::operator--(int) volatile [with _ITp = int]	32	static
+atomic_base.h:272:7:std::__atomic_base<_IntTp>::__int_type std::__atomic_base<_IntTp>::operator=(std::__atomic_base<_IntTp>::__int_type) volatile [with _ITp = int]	32	static
+cstm_sleep.cpp:59:1:void __static_initialization_and_destruction_0(int, int)	16	static
+cstm_sleep.cpp:59:1:cpp)	8	static

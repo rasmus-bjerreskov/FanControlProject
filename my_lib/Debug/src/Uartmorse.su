@@ -1,0 +1,6 @@
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+Uartmorse.cpp:10:1:Uart_morse::Uart_morse(morse_encoder&, LpcUart&)	24	static
+Uartmorse.cpp:15:6:void Uart_morse::read_uart()	48	static
+Uartmorse.cpp:55:7:char* Uart_morse::gets()	32	static
+Uartmorse.cpp:76:1:Uart_morse::~Uart_morse()	16	static
+Uartmorse.cpp:76:1:virtual Uart_morse::~Uart_morse()	16	static

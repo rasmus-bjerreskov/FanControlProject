@@ -1,0 +1,31 @@
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+ritimer_15xx.h:107:20:void Chip_RIT_Enable(LPC_RITIMER_T*)	16	static
+ritimer_15xx.h:117:20:void Chip_RIT_Disable(LPC_RITIMER_T*)	16	static
+ritimer_15xx.h:171:20:bool Chip_RIT_GetIntStatus(LPC_RITIMER_T*)	16	static
+ritimer_15xx.h:181:20:void Chip_RIT_ClearIntStatus(LPC_RITIMER_T*)	16	static
+LiquidCrystal.cpp:11:6:void delayMicroseconds(unsigned int)	40	static
+LiquidCrystal.cpp:54:1:LiquidCrystal::LiquidCrystal(DigitalIoPin*, DigitalIoPin*, DigitalIoPin*, DigitalIoPin*, DigitalIoPin*, DigitalIoPin*)	24	static
+LiquidCrystal.cpp:70:6:void LiquidCrystal::begin(uint8_t, uint8_t, uint8_t)	16	static
+LiquidCrystal.cpp:144:6:void LiquidCrystal::clear()	16	static
+LiquidCrystal.cpp:150:6:void LiquidCrystal::home()	16	static
+LiquidCrystal.cpp:157:6:void LiquidCrystal::print(const string&)	32	static
+LiquidCrystal.cpp:164:6:void LiquidCrystal::print(const char*)	24	static
+LiquidCrystal.cpp:171:6:void LiquidCrystal::setCursor(uint8_t, uint8_t)	40	static
+LiquidCrystal.cpp:182:6:void LiquidCrystal::noDisplay()	16	static
+LiquidCrystal.cpp:186:6:void LiquidCrystal::display()	16	static
+LiquidCrystal.cpp:192:6:void LiquidCrystal::noCursor()	16	static
+LiquidCrystal.cpp:196:6:void LiquidCrystal::cursor()	16	static
+LiquidCrystal.cpp:202:6:void LiquidCrystal::noBlink()	16	static
+LiquidCrystal.cpp:206:6:void LiquidCrystal::blink()	16	static
+LiquidCrystal.cpp:212:6:void LiquidCrystal::scrollDisplayLeft()	16	static
+LiquidCrystal.cpp:215:6:void LiquidCrystal::scrollDisplayRight()	16	static
+LiquidCrystal.cpp:220:6:void LiquidCrystal::leftToRight()	16	static
+LiquidCrystal.cpp:226:6:void LiquidCrystal::rightToLeft()	16	static
+LiquidCrystal.cpp:232:6:void LiquidCrystal::autoscroll()	16	static
+LiquidCrystal.cpp:238:6:void LiquidCrystal::noAutoscroll()	16	static
+LiquidCrystal.cpp:245:6:void LiquidCrystal::createChar(uint8_t, uint8_t*)	32	static
+LiquidCrystal.cpp:255:13:void LiquidCrystal::command(uint8_t)	16	static
+LiquidCrystal.cpp:259:15:virtual size_t LiquidCrystal::write(uint8_t)	16	static
+LiquidCrystal.cpp:267:6:void LiquidCrystal::send(uint8_t, uint8_t)	16	static
+LiquidCrystal.cpp:274:6:void LiquidCrystal::pulseEnable()	16	static
+LiquidCrystal.cpp:283:6:void LiquidCrystal::write4bits(uint8_t)	24	static

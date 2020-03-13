@@ -1,0 +1,21 @@
+core_cm3.h:1335:22:void NVIC_DisableIRQ(IRQn_Type)	16	static
+iocon_15xx.h:95:20:void Chip_IOCON_PinMuxSet(LPC_IOCON_T*, uint8_t, uint8_t, uint32_t)	24	static
+adc_15xx.h:237:20:void Chip_ADC_SetDivider(LPC_ADC_T*, uint8_t)	24	static
+adc_15xx.h:296:20:void Chip_ADC_SetADC0Input(LPC_ADC_T*, uint32_t)	16	static
+adc_15xx.h:346:20:void Chip_ADC_SetupSequencer(LPC_ADC_T*, ADC_SEQ_IDX_T, uint32_t)	24	static
+adc_15xx.h:357:20:void Chip_ADC_EnableSequencer(LPC_ADC_T*, ADC_SEQ_IDX_T)	16	static
+adc_15xx.h:381:20:void Chip_ADC_StartSequencer(LPC_ADC_T*, ADC_SEQ_IDX_T)	16	static
+adc_15xx.h:464:24:uint32_t Chip_ADC_GetDataReg(LPC_ADC_T*, uint8_t)	16	static
+adc_15xx.h:562:24:uint32_t Chip_ADC_GetFlags(LPC_ADC_T*)	16	static
+adc_15xx.h:573:20:void Chip_ADC_ClearFlags(LPC_ADC_T*, uint32_t)	16	static
+adc_15xx.h:584:20:void Chip_ADC_SetTrim(LPC_ADC_T*, uint32_t)	16	static
+i2c_common_15xx.h:238:20:void Chip_I2C_SetClockDiv(LPC_I2C_T*, uint32_t)	16	static
+i2cm_15xx.h:126:20:void Chip_I2CM_Enable(LPC_I2C_T*)	16	static
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+exercise6.1.cpp:48:13:void Init_I2C_PinMux()	8	static
+exercise6.1.cpp:56:6:void ADC_StartCalibration(LPC_ADC_T*)	24	static
+exercise6.1.cpp:70:13:void setupI2CMaster()	8	static
+exercise6.1.cpp:86:13:void SetupXferRecAndExecute(uint8_t, uint8_t*, uint16_t, uint8_t*, uint16_t)	24	static
+exercise6.1.cpp:108:12:int ReadTC74Status(Sleeper&)	32	static
+exercise6.1.cpp:117:15:int8_t ReadTemperatureI2CM()	32	static
+exercise6.1.cpp:144:5:int main()	360	static

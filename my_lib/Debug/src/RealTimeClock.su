@@ -1,0 +1,9 @@
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+RealTimeClock.cpp:10:1:RealTimeClock::RealTimeClock(int)	16	static
+RealTimeClock.cpp:17:1:RealTimeClock::RealTimeClock(int, tm*)	24	static
+RealTimeClock.cpp:24:6:void RealTimeClock::getTime(tm*)	24	static
+RealTimeClock.cpp:31:6:virtual void RealTimeClock::tick()	16	static
+RealTimeClock.cpp:51:1:RealTimeClock::~RealTimeClock()	16	static
+RealTimeClock.cpp:51:1:virtual RealTimeClock::~RealTimeClock()	16	static
+std_mutex.h:161:16:std::lock_guard<_Mutex>::lock_guard(std::lock_guard<_Mutex>::mutex_type&) [with _Mutex = Imutex]	16	static
+std_mutex.h:167:7:std::lock_guard<_Mutex>::~lock_guard() [with _Mutex = Imutex]	16	static

@@ -1,0 +1,7 @@
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+ITMwrapper.cpp:10:1:ITM_wrapper::ITM_wrapper()	16	static
+ITMwrapper.cpp:14:6:void ITM_wrapper::print(const char*)	16	static
+ITMwrapper.cpp:17:6:void ITM_wrapper::print(const string&)	16	static
+ITMwrapper.cpp:21:6:void ITM_wrapper::print(int)	32	static
+ITMwrapper.cpp:27:1:ITM_wrapper::~ITM_wrapper()	16	static
+ITMwrapper.cpp:27:1:virtual ITM_wrapper::~ITM_wrapper()	16	static
