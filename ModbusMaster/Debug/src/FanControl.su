@@ -1,10 +1,10 @@
 FanControl.cpp:12:1:FanControl::FanControl()	16	static
-FanControl.cpp:45:6:void FanControl::sleep(int)	24	static
-FanControl.cpp:50:6:void FanControl::speedPercent(uint8_t)	16	static
-FanControl.cpp:55:6:bool FanControl::setFrequency(uint16_t)	32	static
-FanControl.cpp:82:10:uint16_t FanControl::getSpeed()	16	static
-FanControl.cpp:86:6:void FanControl::updateFrequency()	16	static
-FanControl.cpp:90:6:void FanControl::setTarget(uint16_t)	16	static
-FanControl.cpp:94:10:uint16_t FanControl::getTarget()	16	static
-FanControl.cpp:98:1:FanControl::~FanControl()	16	static
-FanControl.cpp:98:1:virtual FanControl::~FanControl()	16	static
+FanControl.cpp:46:6:void FanControl::sleep(int)	24	static
+FanControl.cpp:51:6:void FanControl::speedPercent(uint8_t)	16	static
+FanControl.cpp:56:6:bool FanControl::setFrequency(uint16_t)	32	static
+FanControl.cpp:83:10:uint16_t FanControl::getSpeed()	16	static
+FanControl.cpp:87:6:void FanControl::updateFrequency()	16	static
+FanControl.cpp:91:6:void FanControl::setTarget(uint16_t)	16	static
+FanControl.cpp:95:10:uint16_t FanControl::getTarget()	16	static
+FanControl.cpp:99:1:FanControl::~FanControl()	16	static
+FanControl.cpp:99:1:virtual FanControl::~FanControl()	16	static

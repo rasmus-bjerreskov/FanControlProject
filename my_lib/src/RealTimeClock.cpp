@@ -8,8 +8,8 @@
 #include <RealTimeClock.h>
 
 RealTimeClock::RealTimeClock(int tick_hz) : Sleeper(tick_hz) {
-	hour = 23;
-	min = 58;
+	hour = 53;
+	min = 59;
 	sec = 35;
 	counter = 0;
 }

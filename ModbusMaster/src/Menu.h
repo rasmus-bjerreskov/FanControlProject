@@ -25,6 +25,7 @@ public:
 private:
 	enum state{s_manSel, s_autSel, s_autModeRun, s_manModeRun,
 		s_autModeAdjust, s_manModeAdjust, s_pFailure};
+	//lcd information, in case we wanted to handle display in a separate class
 	struct MENU_VALUES_T{
 		char firstLine[17]; 	//lcd top row
 		char secondLine[17]; 	//lcd bottom row
@@ -45,12 +46,12 @@ private:
 
 	char strbuf[17];
 	uint32_t timeout;
-	bool manualOverride;
+	bool manualOverride;	//determines whether to run fan manually or automatically
 	uint32_t failTimer; 	//for timekeeping of the current attempt
 
 	uint16_t kp; 	//proportional term
-	float ki;	//integral term
-	float kd; 	//derivative term
+	float ki;		//integral term
+	float kd; 		//derivative term
 	void setPIDVals();
 
 	void setState(state newState);
@@ -61,7 +62,7 @@ private:
 	void manModeRun(const Event&); 		//manual mode, no unconfirmed value
 	void autModeAdjust(const Event&); 	//automatic mode w. unconfirmed value
 	void manModeAdjust(const Event&); 	//manual mode w. unconfirmed value
-	void pFailure(const Event&); 		//failed to reach targed pressure
+	void pFailure(const Event&); 		//failed to reach target pressure
 
 	void setConfigString(uint8_t);
 	void updateMenu();
@@ -69,8 +70,8 @@ private:
 	void updateStats();
 	void refreshCtrl();
 
-	void limitValue(uint8_t* valptr, uint8_t low, uint8_t high);
-	void limitValue(int16_t* valptr, int16_t low, int16_t high);
+	void limitValue(uint8_t& val, uint8_t low, uint8_t high);
+	void limitValue(int16_t& val, int16_t low, int16_t high);
 };
 
 #endif /* MENU_H_ */

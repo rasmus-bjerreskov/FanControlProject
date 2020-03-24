@@ -19,19 +19,20 @@ FanControl::FanControl() : node(2), 	// Create modbus object that connects to sl
 	// need to use explicit conversion since printf's variable argument doesn't automatically convert this to an integer
 	printf("Status=%04X\n", (int)StatusWord); // for debugging
 
-	ControlWord = 0x0406; // prepare for starting
+	ControlWord = (REMOTE_CMD | OFF3_CONTROL | OFF2_CONTROL); // prepare for starting
 
 	printf("Status=%04X\n", (int)StatusWord); // for debugging 1333
 
-	while (!(StatusWord & 1)){sleep(2);} //wait for READY TO SWITCH ON
+	while (!(StatusWord & RDY_ON)){sleep(2);} //wait for READY TO SWITCH ON
 
 	printf("Status=%04X\n", (int)StatusWord); // for debugging 1333
 
-	ControlWord = 0x047F; // set drive to start mode
+	ControlWord = (REMOTE_CMD | RAMP_IN_ZERO | RAMP_HOLD | RAMP_OUT_ZERO | INHIBIT_OPERATION
+			| OFF3_CONTROL | OFF2_CONTROL | OFF1_CONTROL); // set drive to start mode
 
 	printf("Status=%04X\n", (int)StatusWord); // for debugging 1333
 
-	while(!(StatusWord & (1 << 12 | 0b0111))){sleep(2);} //wait for OPERATION ENABLED
+	while(!(StatusWord & (EXT_RUN_ENABLE | RDY_REF | RDY_RUN | RDY_ON))){sleep(2);} //wait for OPERATION ENABLED
 	// give converter some time to set up
 	// note: we should have a startup state machine that check converter status and acts per current status
 	//       but we take the easy way out and just wait a while and hope that everything goes well
@@ -70,7 +71,7 @@ bool FanControl::setFrequency(uint16_t freq){
 		// read status word
 		result = StatusWord;
 		// check if we are at setpoint
-		if (result & 0x0100) atSetpoint = true;
+		if (result & AT_SETPOINT) atSetpoint = true;
 		ctr++;
 	} while(ctr < 10 && !atSetpoint);
 #ifdef DEBUG_FAN

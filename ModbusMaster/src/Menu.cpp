@@ -7,15 +7,9 @@
 
 #include "Menu.h"
 
-#define PID_TUNING
-
 Menu::Menu(LiquidCrystal& lcd_, FanControl& fCtrl_, SDP600& ps_, LpcUart& dbg_) : //menu constructor
 lcd(lcd_), fCtrl(fCtrl_), ps(ps_), dbg(dbg_) {
-#ifndef PID_TUNING
 	mv.setSpeed = 0;
-#else
-	mv.setPressure = 70;
-#endif
 	mv.curConf = 0;
 
 	setPIDVals();
@@ -23,11 +17,7 @@ lcd(lcd_), fCtrl(fCtrl_), ps(ps_), dbg(dbg_) {
 	timeout = systicks;
 	manualOverride = true;
 	tickUpdate();
-#ifndef PID_TUNING
 	setState(s_manSel);
-#else
-	setState(s_autModeAdjust);
-#endif
 }
 
 void Menu::setState(state newState){
@@ -47,15 +37,16 @@ void Menu::handleEvent(const Event& e){
 	case s_autModeRun: autModeRun(e); break;
 	case s_manModeRun: manModeRun(e); break;
 	case s_pFailure: pFailure(e); break;
-	default: break; //TODO error state?
+	default: break;
 	}
 }
 
+/*Manual mode highlighted*/
 void Menu::manSel(const Event& e){ // manual mode selection event
 	switch(e.type){
 	case Event::enter:
 		strcpy(mv.firstLine,  ">Manual   ");
-		strcpy(mv.secondLine, " Automatic");
+		strcpy(mv.secondLine, " Auto     ");
 		updateMenu();
 		break;
 
@@ -80,11 +71,12 @@ void Menu::manSel(const Event& e){ // manual mode selection event
 	}
 }
 
-void Menu::autSel(const Event& e){ // automatic mode selection event
+/*Auto mode highlighted*/
+void Menu::autSel(const Event& e){
 	switch(e.type){
 	case Event::enter:
 		strcpy(mv.firstLine,  " Manual   ");
-		strcpy(mv.secondLine, ">Automatic");
+		strcpy(mv.secondLine, ">Auto     ");
 		updateMenu();
 		break;
 
@@ -109,6 +101,7 @@ void Menu::autSel(const Event& e){ // automatic mode selection event
 	}
 }
 
+/*Show current configured pressure*/
 void Menu::autModeRun(const Event& e){
 	switch(e.type){
 	case Event::enter:
@@ -119,16 +112,17 @@ void Menu::autModeRun(const Event& e){
 		break;
 
 	case Event::up:
-		++mv.curConf;
+		limitValue(++mv.curConf, 0, 120);
 		setState(s_autModeAdjust);
 		break;
 
 	case Event::ok:
 		manualOverride = false;
+		failTimer = systicks;
 		break;
 
 	case Event::down:
-		--mv.curConf;
+		limitValue(--mv.curConf, 0, 120);
 		setState(s_autModeAdjust);
 		break;
 
@@ -149,6 +143,7 @@ void Menu::autModeRun(const Event& e){
 	}
 }
 
+/*Show current configured speed*/
 void Menu::manModeRun(const Event& e){ // run manual mode
 	switch(e.type){
 	case Event::enter:
@@ -159,17 +154,18 @@ void Menu::manModeRun(const Event& e){ // run manual mode
 		break;
 
 	case Event::up:
-		++mv.curConf;
+		limitValue(++mv.curConf, 0, 100);
 		setState(s_manModeAdjust);
 		break;
 
 	case Event::down:
-		--mv.curConf;
+		limitValue(--mv.curConf, 0, 100);
 		setState(s_manModeAdjust);
 		break;
 
 	case Event::ok:
 		manualOverride = true;
+		fCtrl.speedPercent(mv.setSpeed);
 		break;
 
 	case Event::back:
@@ -189,52 +185,36 @@ void Menu::manModeRun(const Event& e){ // run manual mode
 	}
 }
 
+/*Currently configuring pressure*/
 void Menu::autModeAdjust(const Event& e){
 	switch(e.type){
 	case Event::enter:
-		manualOverride = false;
 		strcpy(mv.firstLine, "Pressure  ");
 		setConfigString(mv.curConf);
 		updateMenu();
 		break;
 
 	case Event::up:
-#ifndef PID_TUNING
-		++mv.curConf;
+		limitValue(++mv.curConf, 0, 120);
 		setConfigString(mv.curConf);
-#else
-		kd -= 0.5;
-#endif
 		updateMenu();
 		break;
 
 	case Event::down:
-#ifndef PID_TUNING
-		--mv.curConf;
+		limitValue(--mv.curConf, 0, 120);
 		setConfigString(mv.curConf);
-#else
-		kp += 1;
-#endif
 		updateMenu();
 		break;
 
 	case Event::ok:
-		manualOverride = false;
-#ifndef PID_TUNING
 		mv.setPressure = mv.curConf;
 		failTimer = systicks;		//we start a new attempt
 		setState(s_autModeRun);
-#else
-		ki += 0.05;
-#endif
+		manualOverride = false;
 		break;
 
 	case Event::back:
-#ifndef PID_TUNING
 		setState(s_autModeRun);
-#else
-		setPIDVals();
-#endif
 		break;
 
 	case Event::tick:
@@ -245,6 +225,8 @@ void Menu::autModeAdjust(const Event& e){
 		break;
 	}
 }
+
+/*Currently configuring speed*/
 void Menu::manModeAdjust(const Event& e){
 	switch(e.type){
 	case Event::enter:
@@ -254,13 +236,13 @@ void Menu::manModeAdjust(const Event& e){
 		break;
 
 	case Event::up:
-		++mv.curConf;
+		limitValue(++mv.curConf, 0, 100);
 		setConfigString(mv.curConf);
 		updateMenu();
 		break;
 
 	case Event::down:
-		--mv.curConf;
+		limitValue(--mv.curConf, 0, 100);
 		setConfigString(mv.curConf);
 		updateMenu();
 		break;
@@ -285,7 +267,8 @@ void Menu::manModeAdjust(const Event& e){
 	}
 }
 
-void Menu::pFailure(const Event& e){ // pressure not reached event
+/*Failed to reach target pressure within time limit*/
+void Menu::pFailure(const Event& e){
 	switch (e.type){
 	case Event::enter:
 		strcpy(mv.firstLine,  "Err: P NOT");
@@ -299,7 +282,7 @@ void Menu::pFailure(const Event& e){ // pressure not reached event
 
 	case Event::back:
 		setState(lastState);
-		failTimer = systicks; //TODO maybe change this? currently goes into a new attempt
+		failTimer = systicks;
 		break;
 
 	case Event::tick:
@@ -312,17 +295,17 @@ void Menu::pFailure(const Event& e){ // pressure not reached event
 
 }
 
-//Sets strings of configured value in both configure states
+/*Sets strings of configured value in both configure states*/
 void Menu::setConfigString(uint8_t val){
 	strcpy(strbuf, "Error");
 	if (currentState == s_autModeAdjust || currentState == s_manModeAdjust)
 		sprintf(strbuf, " >%3d     ", val);
-	else if (currentState == s_autModeRun || s_manModeRun)
+	else if (currentState == s_autModeRun || currentState == s_manModeRun)
 		sprintf(strbuf, "  %3d     ", val);
 	strcpy(mv.secondLine, strbuf);
 }
 
-//Updates left side of display
+/*Updates left side of display*/
 void Menu::updateMenu(){
 	lcd.setCursor(0, 0);
 	lcd.print(mv.firstLine);
@@ -331,22 +314,12 @@ void Menu::updateMenu(){
 }
 
 void Menu::tickUpdate(){
-#ifdef PID_TUNING
-	static uint32_t timer;
-	if (systicks - timer >= 500){
-		char stringbuf[50];
-		sprintf(stringbuf, "kp: %d ki: %.3f kd: %.3f\r\n", kp, ki, kd);
-		dbg.write(stringbuf);
-		timer = systicks;
-	}
-	failTimer = systicks;
-#endif
 	updateStats();
 	if (currentState != s_pFailure) //controller will be halted while error message is up
 		refreshCtrl();
 }
 
-//Update sensor readings
+/*Update sensor readings*/
 void Menu::updateStats(){
 	static const uint32_t DELAY(200); //delay between readings
 	static uint32_t time = 0;
@@ -355,25 +328,28 @@ void Menu::updateStats(){
 		mv.curPressure = ps.getPressure();
 		mv.curSpeed = (float)fCtrl.getSpeed() / 20000 * 100;
 
-		sprintf(strbuf, "S %3d", mv.curSpeed);
-		lcd.setCursor(11, 0);
+		if(manualOverride)
+			sprintf(strbuf, "*S %3d", mv.curSpeed);
+		else
+			sprintf(strbuf, " S %3d", mv.curSpeed);
+		lcd.setCursor(10, 0);
 		lcd.print(strbuf);
-		lcd.setCursor(11,1);
-		sprintf(strbuf, "P %3d", mv.curPressure);
+		if(!manualOverride)
+			sprintf(strbuf, "*P %3d", mv.curPressure);
+		else
+			sprintf(strbuf, " P %3d", mv.curPressure);
+		lcd.setCursor(10,1);
 		lcd.print(strbuf);
 
-		if (mv.curSpeed == 71){
-			printf("Wat."); //we kept seeing speed randomly displaying 71
-		}
 		time = systicks;
 	}
 }
 
-//automatic control
+/*Automatic control*/
 void Menu::refreshCtrl(){
+	static const uint16_t MAX_CALIBRATION_TIME = 30000;
 	static uint32_t timer;
-	static uint8_t successCount = 0; 	/*Failure timer will reset when four successive counts made.
-										  Timer should reset when vent is adjusted*/
+	static uint8_t successCount = 0; //consecutive pressure readings within range
 	static int16_t freq = 0;
 	static int16_t err;
 	static int16_t lastErr = 0;
@@ -383,47 +359,54 @@ void Menu::refreshCtrl(){
 	if(!manualOverride && systicks - timer >= 2000){
 		timer = systicks;
 
+		//PID control
 		err = mv.setPressure - mv.curPressure;
 		integral += err;
 		deriv = err - lastErr;
 		lastErr = err;
 
-		freq += kp * err + ki * integral + kd * deriv;
-		limitValue(&freq, 0, 20000);
+		freq = (kp * err + ki * integral + kd * deriv) + 10000;
+		limitValue(freq, 0, 20000);
 		fCtrl.setFrequency(freq);
+
+		//For debugging
 		char stringbuf[80];
 		sprintf(stringbuf, "%d %d %d\r\n", (int)kp*err, (int)ki*integral, (int)kd*deriv);
 		dbg.write(stringbuf);
+
+		//Failure timer will reset when two consecutive counts made
 		if(mv.curPressure <= mv.setPressure + 2 && mv.curPressure >= mv.setPressure - 2)
 			++successCount;
 		else
 			successCount = 0;
-		if(successCount >= 4)
+		if(successCount >= 2)
 			failTimer = systicks;
-		if (systicks - failTimer >= 30000){
+
+		if (systicks - failTimer >= MAX_CALIBRATION_TIME){
 			setState(s_pFailure);
 		}
 	}
 }
 
-void Menu::limitValue(uint8_t* valptr, uint8_t low, uint8_t high){
-	if(*valptr < low)
-		*valptr = low;
-	else if(*valptr > high)
-		*valptr = high;
+/*Limits a value to within given paramenters*/
+void Menu::limitValue(uint8_t& val, uint8_t low, uint8_t high){
+	if(val < low)
+		val = low;
+	else if(val > high)
+		val = high;
 }
 
-void Menu::limitValue(int16_t* valptr, int16_t low, int16_t high){
-	if(*valptr < low)
-		*valptr = low;
-	else if(*valptr > high)
-		*valptr = high;
+void Menu::limitValue(int16_t& val, int16_t low, int16_t high){
+	if(val < low)
+		val = low;
+	else if(val > high)
+		val = high;
 }
 
 void Menu::setPIDVals(){
-	kp = 207; //207? //90
-	ki = 0.0; //0.1
-	kd = -0.005; // -70?
+	kp = 150; //207? //90
+	ki = 8.5; //0.1
+	kd = -61; // -70?
 }
 
 Menu::~Menu() {

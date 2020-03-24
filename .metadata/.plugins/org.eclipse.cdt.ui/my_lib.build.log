@@ -1,6 +1,6 @@
-13:03:03 **** Incremental Build of configuration Debug for project my_lib ****
+14:16:39 **** Incremental Build of configuration Debug for project my_lib ****
 make -r all 
 make: Nothing to be done for 'all'.
 
-13:03:03 Build Finished. 0 errors, 0 warnings. (took 140ms)
+14:16:40 Build Finished. 0 errors, 0 warnings. (took 178ms)
 

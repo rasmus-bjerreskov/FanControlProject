@@ -10,6 +10,34 @@
 #include "ModbusMaster.h"
 #include "ModbusRegister.h"
 #include "LpcUart.h"
+
+/*Status word bits*/
+#define RDY_ON 				1 << 0
+#define RDY_RUN 			1 << 1
+#define RDY_REF 			1 << 2
+#define TRIPPED 			1 << 3
+#define OFF_2_STA 			1 << 4
+#define OFF_3_STA 			1 << 5
+#define SWC_ON_INHIB 		1 << 6
+#define ALARM 				1 << 7
+#define AT_SETPOINT 		1 << 8
+#define REMOTE 				1 << 9
+#define ABOVE_LIMIT			1 << 10
+#define EXT_CTRL_LOC 		1 << 11
+#define EXT_RUN_ENABLE 		1 << 12
+
+/*Control word bits*/
+#define OFF1_CONTROL 		1 << 0
+#define OFF2_CONTROL 		1 << 1
+#define OFF3_CONTROL 		1 << 2
+#define INHIBIT_OPERATION 	1 << 3
+#define RAMP_OUT_ZERO 		1 << 4
+#define RAMP_HOLD 			1 << 5
+#define RAMP_IN_ZERO 		1 << 6
+#define RESET 				1 << 7
+#define REMOTE_CMD 			1 << 10
+#define EXT_CTRL_LOC 		1 << 11
+
 extern volatile uint32_t systicks;
 #ifndef FANCONTROL_H_
 #define FANCONTROL_H_

@@ -16,7 +16,7 @@ uint8_t SDP600::getPressure(){
 	i2c.transaction(devAddr, &txBuffPtr, 1, aptr, 3);
 	pressure = (aptr[0] << 8) | aptr [1];
 	uint8_t toReturn;
-	toReturn = (float)pressure / (PR_SCALE * alt_corr);
+	toReturn = (float)pressure / PR_SCALE * alt_corr;
 	return toReturn;
 }
 

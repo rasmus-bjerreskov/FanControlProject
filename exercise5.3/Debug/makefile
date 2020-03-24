@@ -44,7 +44,7 @@ all: exercise5.3.axf
 exercise5.3.axf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU C++ Linker'
-	arm-none-eabi-c++ -nostdlib -L"C:\Users\Rasmus\Documents\MCUXpressoIDE_11.1.0_3209\workspace\lpc_board_nxp_lpcxpresso_1549\Debug" -L"C:\Users\Rasmus\Documents\MCUXpressoIDE_11.1.0_3209\workspace\lpc_chip_15xx\Debug" -L"C:\Users\Rasmus\Documents\MCUXpressoIDE_11.1.0_3209\workspace\my_lib\Debug" -Xlinker -Map="exercise5.3.map" -Xlinker --cref -Xlinker --gc-sections -Xlinker -print-memory-usage -mcpu=cortex-m3 -mthumb -T "exercise6_2_Debug.ld" -o "exercise5.3.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-c++ -nostdlib -L"C:\Users\Rasmus\Documents\MCUXpressoIDE_11.1.0_3209\FanControlProject\lpc_board_nxp_lpcxpresso_1549\Debug" -L"C:\Users\Rasmus\Documents\MCUXpressoIDE_11.1.0_3209\FanControlProject\lpc_chip_15xx\Debug" -L"C:\Users\Rasmus\Documents\MCUXpressoIDE_11.1.0_3209\FanControlProject\my_lib\Debug" -Xlinker -Map="exercise5.3.map" -Xlinker --cref -Xlinker --gc-sections -Xlinker -print-memory-usage -mcpu=cortex-m3 -mthumb -T "exercise6_2_Debug.ld" -o "exercise5.3.axf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
